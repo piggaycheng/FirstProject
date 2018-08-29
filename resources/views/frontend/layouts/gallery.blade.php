@@ -78,6 +78,32 @@
                         </div>
                 </section>
 
+                <section id="contact">
+                    <!-- Form -->
+                        <form action="{{ route('upload') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <!--Content-->
+                            <div class="column">
+                                <h3>Write Something</h3>
+                                <div class="field">
+                                    <label for="content">Content</label>
+                                    <textarea name="content" id="content" rows="6" placeholder="content"></textarea>
+                                </div>
+                                <ul class="actions">
+                                    <li><input value="Submit" class="button" type="submit"></li>
+                                </ul>
+                            </div>
+                        <!-- image -->
+                            <div class="social column">
+                                <h3>Image Upload</h3>
+                                <label class="button" for="profile-img">
+                                    <input id="profile-img" type="file" name="photo" style="display:none;">
+                                    Upload Image
+                                </label>
+                                <img src="" id="profile-img-tag" style="width: 100%;" />
+                            </div>
+                        </form>
+                </section>
             <!-- Footer -->
                 @include('frontend.layouts.footer')
                 
