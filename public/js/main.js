@@ -50,7 +50,8 @@
 
 				// Poptrox.
 					$content.poptrox({
-						usePopupCaption: true
+						usePopupCaption: true,
+						usePopupEasyClose: false
 					});
 
 				// Tabs.
@@ -115,4 +116,12 @@ function readURL(input) {
 }
 $("#profile-img").change(function(){
 	readURL(this);
+});
+
+$(document).ready(function(){
+	$(".media").height($(".media").width());
+});
+
+$(window).resize(function(){
+	$(".media").height($(".media").width());
 });

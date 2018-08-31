@@ -19,9 +19,11 @@ Route::get('/guest', function () {
     return view('frontend.layouts.home');
 });
 
-Route::get('/gallery', function () {
-    return view('frontend.layouts.gallery');
-});
+// Route::get('/gallery', function () {
+//     return view('frontend.layouts.gallery');
+// });
+
+Route::get('/gallery', 'Frontend\PostController@query')->name('gallery');
 
 // Route::get('/login', function () {
 //     return view('frontend.login');

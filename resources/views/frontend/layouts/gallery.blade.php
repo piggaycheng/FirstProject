@@ -38,45 +38,21 @@
                                 </header>
 
                                 <div class="content">
-                                    <div class="media all people">
-                                        <a href="images/fulls/01.jpg"><img src="images/thumbs/01.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all place">
-                                        <a href="images/fulls/05.jpg"><img src="images/thumbs/05.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all thing">
-                                        <a href="images/fulls/09.jpg"><img src="images/thumbs/09.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all people">
-                                        <a href="images/fulls/02.jpg"><img src="images/thumbs/02.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all place">
-                                        <a href="images/fulls/06.jpg"><img src="images/thumbs/06.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all thing">
-                                        <a href="images/fulls/10.jpg"><img src="images/thumbs/10.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all people">
-                                        <a href="images/fulls/03.jpg"><img src="images/thumbs/03.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all place">
-                                        <a href="images/fulls/07.jpg"><img src="images/thumbs/07.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all thing">
-                                        <a href="images/fulls/11.jpg"><img src="images/thumbs/11.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all people">
-                                        <a href="images/fulls/04.jpg"><img src="images/thumbs/04.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all place">
-                                        <a href="images/fulls/08.jpg"><img src="images/thumbs/08.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
-                                    <div class="media all thing">
-                                        <a href="images/fulls/12.jpg"><img src="images/thumbs/12.jpg" alt="" title="This right here is a caption." /></a>
-                                    </div>
+                                    @foreach ($posts as $post)
+                                        <div class="media">
+                                            <a href="{{ asset($post->img_path) }}"><img src="{{ asset($post->img_path) }}" title="see"/></a>
+                                        </div>
+                                    @endforeach
                                 </div>
                         </div>
+                        <div id="pagination-container">
+                            <div id="pagination">
+                                {{ $posts->links() }}
+                            </div>
+                        <div>
                 </section>
+
+                
 
                 <section id="contact">
                     <!-- Form -->
@@ -100,7 +76,7 @@
                                     <input id="profile-img" type="file" name="photo" style="display:none;">
                                     Upload Image
                                 </label>
-                                <img src="" id="profile-img-tag" style="width: 100%;" />
+                                <img id="profile-img-tag" style="width: 100%;" />
                             </div>
                         </form>
                 </section>
@@ -109,4 +85,11 @@
                 
         </section>
 </div>
+
+@if (Session::has('message'))
+    <script>
+        alert('{{ Session::get('message') }}');
+    </script>
+@endif
+
 @endsection

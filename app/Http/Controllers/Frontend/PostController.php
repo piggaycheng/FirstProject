@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
+use App\Frontend\Post;
+// use DB;
 
 class PostController extends Controller
 {
@@ -91,19 +93,38 @@ class PostController extends Controller
     public function upload(Request $request){
         $id = Auth::user()->id;
         $path = public_path().'\\uploads\\'.$id;
+        $file = null;
+        date_default_timezone_set("Asia/Taipei");
         
         if(!File::exists($path)){
             File::makeDirectory($path);
         }
-        
-        $content = $request->input('content');
-        echo $content;
 
 		if(Input::hasFile('photo')){            //'photo'是對應前端form表單中的input的name
             $file = Input::file('photo');
-            $file->move('uploads\\'.$id, $file->getClientOriginalName());
-		}
+            $file->move('uploads\\'.$id, date('YmdHis').'.'.$file->getClientOriginalExtension());
+        }
+        
+        $content = $request->input('content');
 
-        return Redirect::to('/gallery');
-	}
+        $post = new Post;
+        $post -> content = $content;
+        $post -> user_id = $id;
+        $post -> img_path = 'uploads\\'.$id.'\\'.date('YmdHis').'.'.$file->getClientOriginalExtension();
+        $post -> save();
+        //用這個方法Insert的話create_at和update_at欄位不會自動填
+        // DB::table('posts')->insert(
+        //     ['content' => $content, 'user_id' => $id, 'img_path' => 'uploads\\'.$id.$file->getClientOriginalName()]
+        // );
+
+        return Redirect::to('/gallery') -> with('message', 'Post success!!');
+    }
+    
+    public function query(){
+        $id = Auth::user()->id;
+
+        $posts = Post::paginate(12);
+
+        return view('frontend.layouts.gallery', compact('posts'));
+    }
 }
