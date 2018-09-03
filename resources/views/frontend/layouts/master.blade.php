@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/header.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/profile/responsive.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/profile/styles.css') }}" />
 </head>
 <body>
     <!-- Content -->
@@ -19,5 +21,6 @@
     <script src="{{ asset('js/skel.min.js') }}"></script>
     <script src="{{ asset('js/util.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/profile.js') }}"></script>
 </body>
 </html>

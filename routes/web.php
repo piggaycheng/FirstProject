@@ -23,7 +23,9 @@ Route::get('/guest', function () {
 //     return view('frontend.layouts.gallery');
 // });
 
-Route::get('/gallery', 'Frontend\PostController@query')->name('gallery');
+// Route::get('/profile', function () {
+//     return view('frontend.layouts.profile');
+// });
 
 // Route::get('/login', function () {
 //     return view('frontend.login');
@@ -47,5 +49,12 @@ Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+//----------------------gallery--------------------
+Route::get('/gallery', 'Frontend\PostController@query')->name('gallery');
 
 Route::post('/upload', 'Frontend\PostController@upload')->name('upload');
+//----------------------profile--------------------
+Route::get('/createUserInfo', 'Frontend\UserInfoController@create')->name('createUserInfo');
+
+Route::get('/showUserInfo', 'Frontend\UserInfoController@show')->name('profile');
+//-------------------------------------------------

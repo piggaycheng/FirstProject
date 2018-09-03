@@ -1381,6 +1381,7 @@
 		-webkit-justify-content: -webkit-flex-start;
 		-ms-justify-content: -ms-flex-start;
 		justify-content: flex-start;
+		min-height: 100vh;
 	}
 
 	.wrapper {
@@ -1587,7 +1588,8 @@
 	}
 
 		#main #header {
-			background: #e6e6e6;
+			/* background: #e6e6e6; */
+			background: #fff;
 			padding: 1.15em 3.5em;
 			text-align: right;
 		}
@@ -1617,7 +1619,8 @@
 
 	#footer {
 		padding: 4em 0 2em 0;
-		background: #f2f2f2;
+		/* background: #f2f2f2; */
+		background: #fff;
 	}
 
 		#footer .copyright {
@@ -1644,4 +1647,8 @@
 	
 	#pagination {
 		display: inline-block;
+	}
+	
+	html, body {
+		min-height: 100vh;
 	}
