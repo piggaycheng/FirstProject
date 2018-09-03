@@ -28,7 +28,8 @@
                             <div class="intro">
                                 <div class="profile-img"><img src="images/profile-1-250x250.jpg" alt=""></div>
                                 <h2><b>{{ Auth::user()->name }}</b></h2>
-                                <form>
+                                <form id="profile-form">
+                                    @csrf
                                     <ul class="information margin-tb-30">
                                         <li><label for="profile-career">CAREER : </label><span class="profile-data">{{ $userInfo->career }}</span></li>
                                         <li><label for="profile-born">BORN : </label><span class="profile-data">{{ $userInfo->birthday }}</span></li>

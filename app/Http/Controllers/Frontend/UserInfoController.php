@@ -13,6 +13,17 @@ use DB;
 class UserInfoController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        date_default_timezone_set("Asia/Taipei");
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -80,12 +91,19 @@ class UserInfoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserInfo  $userInfo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserInfo $userInfo)
+    public function update(Request $request)
     {
-        //
+        $id = Auth::user()->id;
+
+        $userInfo = UserInfo::find($id);
+        $userInfo -> career = $request -> input('profile-career');
+        $userInfo -> birthday = $request -> input('profile-born');
+        $userInfo -> cellphone = $request -> input('profile-cellphone');
+        $userInfo -> save();
+
+        return response()->json($userInfo);
     }
 
     /**

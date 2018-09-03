@@ -57,4 +57,6 @@ Route::post('/upload', 'Frontend\PostController@upload')->name('upload');
 Route::get('/createUserInfo', 'Frontend\UserInfoController@create')->name('createUserInfo');
 
 Route::get('/showUserInfo', 'Frontend\UserInfoController@show')->name('profile');
+
+Route::post('/updateUserInfo', 'Frontend\UserInfoController@update')->name('updateUserInfo');
 //-------------------------------------------------

@@ -23,6 +23,7 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        date_default_timezone_set("Asia/Taipei");
     }
 
     /**
@@ -105,7 +106,6 @@ class PostController extends Controller
         $id = Auth::user()->id;
         $path = public_path().'\\uploads\\'.$id;
         $file = null;
-        date_default_timezone_set("Asia/Taipei");
         
         if(!File::exists($path)){
             File::makeDirectory($path);
