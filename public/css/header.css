@@ -12,11 +12,13 @@
 	position: relative;
 }
 
-/*.top-right {
+.top-right {
+	/*
 	position: absolute;
-	right: 10px;
-	top: 18px;
-}*/
+	right: 0;
+	top: 50%;
+	*/
+}
 
 .content {
 	text-align: center;
@@ -38,4 +40,13 @@
 
 .m-b-md {
 	margin-bottom: 30px;
+}
+
+#header {
+	display: flex;
+}
+
+#form-searchbar{
+	flex: 1;
+	margin: 0;
 }

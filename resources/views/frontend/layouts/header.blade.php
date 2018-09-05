@@ -2,6 +2,15 @@
 
 <header id="header">
 	<!-- <div>Snapshot <span>by TEMPLATED</span></div> -->
+
+	<!-- Search form -->
+	<form class="form-inline" id="form-searchbar" action="{{ route('search') }}" method="post">
+		<i class="fa fa-search" aria-hidden="true"></i>
+		@csrf
+		<input class="form-control form-control-sm ml-3 w-75" id="input-searchbar" name="input-searchbar" type="text" placeholder="Search" aria-label="Search">
+		<input type="text" style="display: none">
+	</form>
+	
 	@if (Route::has('login'))
 		<div class="top-right links">
 			@auth

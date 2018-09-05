@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\File;
 use App\Frontend\UserInfo;
 use Auth;
 use DB;
+use App\Frontend\Post;
 
 class UserInfoController extends Controller
 {
@@ -44,7 +47,9 @@ class UserInfoController extends Controller
         //
         $id = Auth::user()->id;
         $userInfo = new UserInfo;
+        $user = DB::table('users')->where('id', $id)->first();
         $userInfo -> user_id = $id;
+        $userInfo -> name = $user -> name;
         $userInfo -> save();
 
         return Redirect::to('/home');
@@ -63,8 +68,7 @@ class UserInfoController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\UserInfo  $userInfo
+     * 
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -73,6 +77,18 @@ class UserInfoController extends Controller
         $id = Auth::user()->id;
         $userInfo = DB::table('user_infos')->where('id', $id)->first();
         // echo $userInfo;
+        return view('frontend.layouts.profile', compact('userInfo'));
+    }
+
+    /**
+     * Search some one and display show the specified resource.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request){
+        $name = $request -> input('input-searchbar');
+        $userInfo = DB::table('user_infos')->where('name', $name)->first();
+
         return view('frontend.layouts.profile', compact('userInfo'));
     }
 
@@ -96,8 +112,21 @@ class UserInfoController extends Controller
     public function update(Request $request)
     {
         $id = Auth::user()->id;
+        $path = public_path().'\\uploads\\'.$id;
+
+        if(!File::exists($path)){
+            File::makeDirectory($path);
+            File::makeDirectory($path.'\\profile');
+        }
+
+        $date = date('YmdHis');
+        if(Input::hasFile('photo')){            //'photo'是對應前端form表單中的input的name
+            $file = Input::file('photo');
+            $file->move('uploads\\'.$id.'\\profile', 'profile.'.$file->getClientOriginalExtension());
+        }
 
         $userInfo = UserInfo::find($id);
+        $userInfo -> img_path = 'uploads\\'.$id.'\\profile\\profile.'.$file->getClientOriginalExtension();
         $userInfo -> career = $request -> input('profile-career');
         $userInfo -> birthday = $request -> input('profile-born');
         $userInfo -> cellphone = $request -> input('profile-cellphone');

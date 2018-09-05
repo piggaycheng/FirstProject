@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/profile/responsive.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/profile/styles.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/mdb.css') }}" />
 </head>
 <body>
     <!-- Content -->

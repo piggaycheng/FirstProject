@@ -15,9 +15,11 @@ class CreateUserInfosTable extends Migration
     {
         Schema::create('user_infos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('img_path')->nullable();
+            $table->string('name');
+            $table->string('career')->nullable();
             $table->string('birthday')->nullable();
             $table->string('cellphone')->nullable();
-            $table->string('career')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

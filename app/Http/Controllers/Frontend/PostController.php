@@ -109,11 +109,13 @@ class PostController extends Controller
         
         if(!File::exists($path)){
             File::makeDirectory($path);
+            File::makeDirectory($path.'\\profile');
         }
 
+        $date = date('YmdHis');
 		if(Input::hasFile('photo')){            //'photo'是對應前端form表單中的input的name
             $file = Input::file('photo');
-            $file->move('uploads\\'.$id, date('YmdHis').'.'.$file->getClientOriginalExtension());
+            $file->move('uploads\\'.$id, $date.'.'.$file->getClientOriginalExtension());
         }
         
         $content = $request->input('content');
@@ -121,7 +123,7 @@ class PostController extends Controller
         $post = new Post;
         $post -> content = $content;
         $post -> user_id = $id;
-        $post -> img_path = 'uploads\\'.$id.'\\'.date('YmdHis').'.'.$file->getClientOriginalExtension();
+        $post -> img_path = 'uploads\\'.$id.'\\'.$date.'.'.$file->getClientOriginalExtension();
         $post -> save();
         //用這個方法Insert的話create_at和update_at欄位不會自動填
         // DB::table('posts')->insert(
@@ -134,7 +136,7 @@ class PostController extends Controller
     public function query(){
         $id = Auth::user()->id;
 
-        $posts = Post::paginate(12);
+        $posts = Post::where('user_id', $id)->paginate(12);
 
         return view('frontend.layouts.gallery', compact('posts'));
     }

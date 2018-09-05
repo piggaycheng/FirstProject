@@ -59,4 +59,6 @@ Route::get('/createUserInfo', 'Frontend\UserInfoController@create')->name('creat
 Route::get('/showUserInfo', 'Frontend\UserInfoController@show')->name('profile');
 
 Route::post('/updateUserInfo', 'Frontend\UserInfoController@update')->name('updateUserInfo');
+
+Route::post('/search', 'Frontend\UserInfoController@search')->name('search');
 //-------------------------------------------------

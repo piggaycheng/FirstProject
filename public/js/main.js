@@ -103,7 +103,7 @@
 	});
 
 })(jQuery);
-
+//------gallery 顯示要上傳的圖------------
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
@@ -117,11 +117,29 @@ function readURL(input) {
 $("#profile-img").change(function(){
 	readURL(this);
 });
-
+//-----------------------------------------
 $(document).ready(function(){
 	$(".media").height($(".media").width());
 });
 
 $(window).resize(function(){
 	$(".media").height($(".media").width());
+});
+
+var inputSearchActive = false;
+
+$('#input-searchbar').focus(function(){
+	inputSearchActive = true;
+});
+
+$('#input-searchbar').focusout(function(){
+	inputSearchActive = false;
+});
+
+$(document).keypress(function(e){
+	if(e.which == 13){
+		if(inputSearchActive){
+			$('#form-searchbar').submit();
+		}
+	}
 });

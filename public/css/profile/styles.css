@@ -139,7 +139,7 @@ header .downlad-btn:hover{ -webkit-transform: translateY(-4px); transform: trans
 
 .intro{ padding: 0 20px; margin-top: 100px; text-align: center; background: #fff; }
 
-.intro .profile-img{ height: 200px; width: 200px; border-radius: 100px; margin: 0 auto; 
+.intro .profile-img{ height: 200px; width: 200px; margin: 0 auto; 
 	overflow: hidden; position: relative; top: -100px; margin-bottom: -70px;  }
 
 .intro .information > li{ display: block; margin: 5px 0; }
@@ -154,6 +154,10 @@ header .downlad-btn:hover{ -webkit-transform: translateY(-4px); transform: trans
 
 .intro .social-icons > li > a:hover:after{ -webkit-transform: scale(1); transform: scale(1); }
 
+#profile-img-tag {
+	max-width: 100%;
+	max-height: 100%;
+}
 /* ---------------------------------
 5. PORFOLIO SECTION
 
