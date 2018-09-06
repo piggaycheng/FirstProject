@@ -86,10 +86,10 @@ class UserInfoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request){
-        $name = $request -> input('input-searchbar');
-        $userInfo = DB::table('user_infos')->where('name', $name)->first();
+        // $name = $request -> input('input-searchbar');
+        // $userInfo = DB::table('user_infos')->where('name', $name)->first();
 
-        return view('frontend.layouts.profile', compact('userInfo'));
+        return view('frontend.layouts.searchResult', compact('userInfo'));
     }
 
     /**
