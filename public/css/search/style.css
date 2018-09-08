@@ -17,3 +17,8 @@
 .mycard-img-container {
 	width: 100%;
 }
+
+#searchResults {
+	display: flex;
+	flex-wrap: wrap;
+}

@@ -19,16 +19,18 @@
             <!-- Header -->
                 @include('frontend.layouts.header')
 
-                <section>
-                    <div class="mycard">
-                        <div class="mycard-img-container">
-                            <img src="" alt="" style="width:100%">
+                <section id="searchResults">
+                    @foreach ($userInfos as $userInfo)
+                        <div class="mycard">
+                            <div class="mycard-img-container">
+                                <img src="" alt="" style="width:100%">
+                            </div>
+                            <div class="container">
+                                <h4><b>John Doe</b></h4> 
+                                <p>Architect & Engineer</p> 
+                            </div>
                         </div>
-                        <div class="container">
-                            <h4><b>John Doe</b></h4> 
-                            <p>Architect & Engineer</p> 
-                        </div>
-                    </div>
+                    @endforeach
                 </section>
                 
             <!-- Footer -->
