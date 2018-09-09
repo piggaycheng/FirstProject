@@ -61,4 +61,6 @@ Route::get('/showUserInfo', 'Frontend\UserInfoController@show')->name('profile')
 Route::post('/updateUserInfo', 'Frontend\UserInfoController@update')->name('updateUserInfo');
 
 Route::post('/search', 'Frontend\UserInfoController@search')->name('search');
+
+Route::get('/clickCard/{id}', 'Frontend\UserInfoController@clickCard')->name('clickCard');
 //-------------------------------------------------

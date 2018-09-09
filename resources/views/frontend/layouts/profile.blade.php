@@ -9,8 +9,8 @@
     <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="home"><span class="icon fa-home"></span></a></li>
-                <li><a href="gallery"><span class="icon fa-camera-retro"></span></a></li>
+                <li><a href="{{ route('home') }}"><span class="icon fa-home"></span></a></li>
+                <li><a href="{{ route('gallery') }}"><span class="icon fa-camera-retro"></span></a></li>
                 <li><a href="{{ route('profile') }}" class="active"><span class="icon fa-file-text-o"></span></a></li>
             </ul>
         </nav>
@@ -60,30 +60,11 @@
                         <h2>Photo</h2>
                     </header>
                     <div class="content">
-                        <div class="media">
-                            <a href="{{ asset('images/fulls/01.jpg') }}"><img src="{{ asset('images/thumbs/01.jpg') }}" alt="" title="This right here is a caption." /></a>
-                        </div>
-                        <div class="media">
-                            <a href="{{ asset('images/fulls/05.jpg') }}"><img src="{{ asset('images/thumbs/05.jpg') }}" alt="" title="This right here is a caption." /></a>
-                        </div>
-                        <div class="media">
-                            <a href="{{ asset('images/fulls/09.jpg') }}"><img src="{{ asset('images/thumbs/09.jpg') }}" alt="" title="This right here is a caption." /></a>
-                        </div>
-                        <div class="media">
-                            <a href="{{ asset('images/fulls/02.jpg') }}"><img src="{{ asset('images/thumbs/02.jpg') }}" alt="" title="This right here is a caption." /></a>
-                        </div>
-                        <div class="media">
-                            <a href="{{ asset('images/fulls/06.jpg') }}"><img src="{{ asset('images/thumbs/06.jpg') }}" alt="" title="This right here is a caption." /></a>
-                        </div>
-                        <div class="media">
-                            <a href="{{ asset('images/fulls/10.jpg') }}"><img src="{{ asset('images/thumbs/10.jpg') }}" alt="" title="This right here is a caption." /></a>
-                        </div>
-                        <div class="media">
-                            <a href="{{ asset('images/fulls/03.jpg') }}"><img src="{{ asset('images/thumbs/03.jpg') }}" alt="" title="This right here is a caption." /></a>
-                        </div>
-                        <div class="media">
-                            <a href="{{ asset('images/fulls/07.jpg') }}"><img src="{{ asset('images/thumbs/07.jpg') }}" alt="" title="This right here is a caption." /></a>
-                        </div>
+                        @foreach ($posts as $post)
+                            <div class="media">
+                                <a href="{{ asset($post->img_path) }}"><img src="{{ asset($post->img_path) }}" title="see"/></a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </section>

@@ -76,8 +76,9 @@ class UserInfoController extends Controller
         //
         $id = Auth::user()->id;
         $userInfo = DB::table('user_infos')->where('id', $id)->first();
+        $posts = Post::where('user_id', $id)->paginate(12);
         // echo $userInfo;
-        return view('frontend.layouts.profile', compact('userInfo'));
+        return view('frontend.layouts.profile', compact('userInfo', 'posts'));
     }
 
     /**
@@ -90,6 +91,12 @@ class UserInfoController extends Controller
         $userInfos = DB::table('user_infos')->where('name', $name)->get();
 
         return view('frontend.layouts.searchResult', compact('userInfos'));
+    }
+
+    public function clickCard($id){
+        $userInfo = DB::table('user_infos')->where('id', $id)->first();
+        $posts = Post::where('user_id', $id)->paginate(12);
+        return view('frontend.layouts.profile', compact('userInfo', 'posts'));
     }
 
     /**
@@ -119,14 +126,15 @@ class UserInfoController extends Controller
             File::makeDirectory($path.'\\profile');
         }
 
+        $userInfo = UserInfo::find($id);
+
         $date = date('YmdHis');
         if(Input::hasFile('photo')){            //'photo'是對應前端form表單中的input的name
             $file = Input::file('photo');
             $file->move('uploads\\'.$id.'\\profile', 'profile.'.$file->getClientOriginalExtension());
+            $userInfo -> img_path = 'uploads\\'.$id.'\\profile\\profile.'.$file->getClientOriginalExtension();
         }
 
-        $userInfo = UserInfo::find($id);
-        $userInfo -> img_path = 'uploads\\'.$id.'\\profile\\profile.'.$file->getClientOriginalExtension();
         $userInfo -> career = $request -> input('profile-career');
         $userInfo -> birthday = $request -> input('profile-born');
         $userInfo -> cellphone = $request -> input('profile-cellphone');
