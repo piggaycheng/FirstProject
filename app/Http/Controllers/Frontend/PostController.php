@@ -136,7 +136,7 @@ class PostController extends Controller
     public function query(){
         $id = Auth::user()->id;
 
-        $posts = Post::where('user_id', $id)->paginate(12);
+        $posts = Post::where('user_id', $id)->paginate(8);
 
         return view('frontend.layouts.gallery', compact('posts'));
     }

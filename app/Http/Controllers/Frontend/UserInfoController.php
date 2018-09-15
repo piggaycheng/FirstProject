@@ -88,7 +88,7 @@ class UserInfoController extends Controller
      */
     public function search(Request $request){
         $name = $request -> input('input-searchbar');
-        $userInfos = DB::table('user_infos')->where('name', $name)->get();
+        $userInfos = DB::table('user_infos')->where('name', 'like', '%'.$name.'%')->get();
 
         return view('frontend.layouts.searchResult', compact('userInfos'));
     }

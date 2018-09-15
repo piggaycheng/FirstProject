@@ -16,7 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/guest', function () {
-    return view('frontend.layouts.home');
+    $posts = DB::table('posts')->orderBy('id', 'desc')->paginate(8);
+
+    return view('frontend.layouts.home', compact('posts'));
 });
 
 // Route::get('/gallery', function () {

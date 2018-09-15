@@ -49,10 +49,10 @@
 					$content = $gallery.find('.content');
 
 				// Poptrox.
-					$content.poptrox({
+					/*$content.poptrox({
 						usePopupCaption: true,
 						usePopupEasyClose: false
-					});
+					});*/
 
 				// Tabs.
 					$gallery.each( function() {

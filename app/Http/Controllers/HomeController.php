@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.layouts.home');
+        $posts = DB::table('posts')->orderBy('id', 'desc')->paginate(8);
+
+        return view('frontend.layouts.home', compact('posts'));
     }
 }

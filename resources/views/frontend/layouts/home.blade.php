@@ -3,6 +3,8 @@
 @section('title', 'Home')
 
 @section('content')
+
+@include('frontend.layouts.modal')
 <div class="page-wrap">
 
     <!-- Nav -->
@@ -18,7 +20,7 @@
         <section id="main">
             <!-- Header -->
                 @include('frontend.layouts.header')
-
+                
             <!-- Banner -->
                 <section id="banner">
                     <div class="inner">
@@ -39,35 +41,21 @@
                                 <h2>What's New</h2>
                             </header>
                             <div class="content">
-                                <div class="media">
-                                    <a href="{{ asset('images/fulls/01.jpg') }}"><img src="{{ asset('images/thumbs/01.jpg') }}" alt="" title="This right here is a caption." /></a>
-                                </div>
-                                <div class="media">
-                                    <a href="{{ asset('images/fulls/05.jpg') }}"><img src="{{ asset('images/thumbs/05.jpg') }}" alt="" title="This right here is a caption." /></a>
-                                </div>
-                                <div class="media">
-                                    <a href="{{ asset('images/fulls/09.jpg') }}"><img src="{{ asset('images/thumbs/09.jpg') }}" alt="" title="This right here is a caption." /></a>
-                                </div>
-                                <div class="media">
-                                    <a href="{{ asset('images/fulls/02.jpg') }}"><img src="{{ asset('images/thumbs/02.jpg') }}" alt="" title="This right here is a caption." /></a>
-                                </div>
-                                <div class="media">
-                                    <a href="{{ asset('images/fulls/06.jpg') }}"><img src="{{ asset('images/thumbs/06.jpg') }}" alt="" title="This right here is a caption." /></a>
-                                </div>
-                                <div class="media">
-                                    <a href="{{ asset('images/fulls/10.jpg') }}"><img src="{{ asset('images/thumbs/10.jpg') }}" alt="" title="This right here is a caption." /></a>
-                                </div>
-                                <div class="media">
-                                    <a href="{{ asset('images/fulls/03.jpg') }}"><img src="{{ asset('images/thumbs/03.jpg') }}" alt="" title="This right here is a caption." /></a>
-                                </div>
-                                <div class="media">
-                                    <a href="{{ asset('images/fulls/07.jpg') }}"><img src="{{ asset('images/thumbs/07.jpg') }}" alt="" title="This right here is a caption." /></a>
-                                </div>
+                                @foreach ($posts as $post)
+                                    <div class="media">
+                                        <a data-toggle="modal" data-target="#myModal"><img src="{{ asset($post->img_path) }}"/></a>
+                                    </div>
+                                @endforeach
                             </div>
-                            <footer>
+                            <!-- <footer>
                                 <a href="gallery.html" class="button big">Full Gallery</a>
-                            </footer>
+                            </footer> -->
                         </div>
+                        <div id="pagination-container">
+                            <div id="pagination">
+                                {{ $posts->links() }}
+                            </div>
+                        <div>
                 </section>
                 
             <!-- Footer -->
@@ -75,5 +63,10 @@
 
         </section>
 </div>
+
+<script>
+    var posts = <?php echo json_encode($posts); ?>;
+</script>
+
 @endsection
 

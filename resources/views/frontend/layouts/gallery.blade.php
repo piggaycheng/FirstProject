@@ -3,6 +3,8 @@
 @section('title', 'Gallery')
 
 @section('content')
+
+@include('frontend.layouts.modal')
 <div class="page-wrap">
 
     <!-- Nav -->
@@ -40,7 +42,7 @@
                                 <div class="content">
                                     @foreach ($posts as $post)
                                         <div class="media">
-                                            <a href="{{ asset($post->img_path) }}"><img src="{{ asset($post->img_path) }}" title="see"/></a>
+                                            <a data-toggle="modal" data-target="#myModal"><img src="{{ asset($post->img_path) }}"/></a>
                                         </div>
                                     @endforeach
                                 </div>
@@ -82,7 +84,6 @@
                 </section>
             <!-- Footer -->
                 @include('frontend.layouts.footer')
-                
         </section>
 </div>
 
@@ -91,5 +92,9 @@
         alert('{{ Session::get('message') }}');
     </script>
 @endif
+
+<script>
+    var posts = <?php echo json_encode($posts); ?>;
+</script>
 
 @endsection

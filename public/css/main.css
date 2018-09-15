@@ -847,7 +847,7 @@
 				overflow: hidden;
 				opacity: 0;
 				position: relative;
-				width: 25%;
+				width: 23%;
 				/* Internet Explorer 10 */
 				display:-ms-flexbox;
 				-ms-flex-pack:center;
@@ -867,7 +867,8 @@
 				display:box;
 				box-pack:center;
 				box-align:center;
-
+				
+				margin: 1%;
 			}
 
 				.gallery .content .media a {
