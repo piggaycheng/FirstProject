@@ -33,3 +33,5 @@ php artisan migrate
 
 php artisan db:seed
 ```
+## Demo
+[Demo vedio](https://youtu.be/OASgyba81fs)
